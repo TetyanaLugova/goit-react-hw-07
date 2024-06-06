@@ -4,13 +4,17 @@ import { ErrorMessage } from "formik";
 import { useId } from "react";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values.name, values.number));
+    const newContact = {
+      name: values.name,
+      number: values.number,
+    };
+    dispatch(addContact(newContact));
     actions.resetForm();
   };
 
